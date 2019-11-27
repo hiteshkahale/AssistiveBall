@@ -1,0 +1,4 @@
+AssistiveBall/bin/*
+AssistiveBall/obj/*
+*.vs/*
+packages/*

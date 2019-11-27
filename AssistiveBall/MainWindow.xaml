@@ -1,0 +1,242 @@
+﻿<Window x:Class="AssistiveBall.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssistiveBall"
+		xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d" WindowStyle="None"
+		AllowsTransparency="True"
+		Background="Transparent" ResizeMode="NoResize"
+        Height="400" Width="400" Topmost="True">
+	<Window.Resources>
+		<BooleanToVisibilityConverter x:Key="BoolToVis"/>
+	</Window.Resources>
+    <Grid x:Name="mainGrid"
+		  Margin="10" Background="Transparent">
+		<Grid.Resources>
+			<Style x:Key="roundGridStyle" TargetType="Grid">
+				<Setter Property="Height" Value="60"/>
+				<Setter Property="Width" Value="60"/>
+				<Setter Property="Visibility" Value="{Binding IsExpanded, Converter={StaticResource BoolToVis}}"/>
+			</Style>
+			<Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+				<Setter Property="Height" Value="40"/>
+				<Setter Property="Width" Value="40"/>
+				<Setter Property="HorizontalAlignment" Value="Center"/>
+				<Setter Property="VerticalAlignment" Value="Center"/>
+			</Style>
+		</Grid.Resources>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20*"/>
+				<RowDefinition Height="20*"/>
+				<RowDefinition Height="20*"/>
+				<RowDefinition Height="20*"/>
+				<RowDefinition Height="20*"/>
+			</Grid.RowDefinitions>
+			
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="20*"/>
+				<ColumnDefinition Width="20*"/>
+				<ColumnDefinition Width="20*"/>
+				<ColumnDefinition Width="20*"/>
+				<ColumnDefinition Width="20*"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid x:Name="centerGrid"
+				  Grid.Row="2" Grid.Column="2"
+				  Width="70" Height="70"
+				  MouseDown="mainButton_MouseDown">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="Gray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="White" Offset="0.768"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Command="{Binding CloseCmd}">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Height="25" Width="25">
+									<iconPacks:PackIconMaterial.Style>
+										<Style TargetType="{x:Type iconPacks:PackIconMaterial}" BasedOn="{StaticResource {x:Type iconPacks:PackIconMaterial}}">
+											<Setter Property="Kind" Value="Launch"/>
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding IsExpanded}" Value="True">
+													<Setter Property="Kind" Value="Close"/>
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</iconPacks:PackIconMaterial.Style>
+								</iconPacks:PackIconMaterial>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="0" Grid.Column="2"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Account"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="1" Grid.Column="3"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Settings"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="2" Grid.Column="6" 
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Snapchat"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="3" Grid.Column="3"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Sync"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="4" Grid.Column="2"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Package"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="3" Grid.Column="1"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Office"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="2" Grid.Column="0"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="Database"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+			<Grid Grid.Row="1" Grid.Column="1"
+				  Style="{StaticResource roundGridStyle}">
+				<Grid.Background>
+					<RadialGradientBrush>
+						<GradientStop Color="LightGray" Offset="0.8"/>
+						<GradientStop Offset="1"/>
+						<GradientStop Color="Gainsboro" Offset="0.868"/>
+					</RadialGradientBrush>
+				</Grid.Background>
+				<Button Background="Transparent" BorderBrush="Transparent">
+					<Button.Template>
+						<ControlTemplate TargetType="Button">
+							<Grid>
+								<iconPacks:PackIconMaterial Kind="FaceProfile"/>
+							</Grid>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+			</Grid>
+
+		</Grid>
+    </Grid>
+</Window>
